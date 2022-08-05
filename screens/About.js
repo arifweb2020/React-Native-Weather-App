@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
-
+import arrow from '../assets/images/arrow.png';
+import food1 from '../assets/images/food1.png';
 const styles = StyleSheet.create({
     sectionContainer: {
         marginTop: 32,
@@ -16,7 +17,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
     },
     sectionTitle: {
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: '600',
     },
     sectionDescription: {
@@ -53,39 +54,48 @@ const About = ({ navigation, route }) => {
         >
 
             <Image
-                source={{
-                    uri: 'https://media-exp1.licdn.com/dms/image/C5603AQG34QF5MMH67w/profile-displayphoto-shrink_400_400/0/1631760429735?e=1665014400&v=beta&t=RowkRLCJ7CPsvDpiO8RifaNT4rXVvzOrtitk3Sets9c',
-                    cache: 'only-if-cached'
-                }}
-                style={{ width: 400, height: 400 }}
+                source={food1}
+                style={{ width: 400, height: 300 }}
             />
-            <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 20 }}>
+            <TouchableOpacity onPress={() => navigation.navigate('home-page')}
+             style={{  position: 'absolute', left: 10, top: 10 }}
+            >
+            <Image
+                source={arrow}
+                style={{ width: 35, height: 35 }}
+                
+            />
+            </TouchableOpacity>
+            
 
-                <Text style={{ fontSize: 35, color: 'purple' }}>Name - {route.params.name}</Text>
+            <View style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 20 }}>
+
+                <Text style={{ fontSize: 30, color: 'purple' }}> {route.params.name}</Text>
+                <Text style={{ fontSize: 20, color: 'black' , padding:10 , textAlign:'center' }}> Chefooz is an Indian online food ordering and delivery platform. Founded in July 2020, Chefooz is based in Bangalore and operates in 500 Indian cities as of September 2021.</Text>
 
             </View>
             <View style={styles.listContainer}>
-                <Text style={{ fontSize: 30, color: 'red' }}>List of students</Text>
+                <Text style={{ fontSize: 23, color: 'black' }}>Delivery Boy List</Text>
                 {
                     loader ? <Text style={{ fontSize: 25, color: 'black', textAlign: 'center', marginTop: 30, marginBottom: 25 }}>Loading...</Text> :
 
                         data.map(x => {
                             return (
-                                <View style={{ display: 'flex', flexDirection: 'row', marginTop: 25,  justifyContent: 'space-between' }} key={x.id}>
-                <Text style={styles.sectionTitle} >
-                    {x?.name}
-                </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('student-details', { id: x?.id })}>
-                    <Text style={{ fontSize: 14, cursor: 'pointer', backgroundColor: 'black', padding: 9, color: '#fff' }}>view</Text>
-                </TouchableOpacity>
-            </View>
+                                <View style={{ display: 'flex', flexDirection: 'row', marginTop: 25, justifyContent: 'space-between' }} key={x.id}>
+                                    <Text style={styles.sectionTitle} >
+                                        {x?.name}
+                                    </Text>
+                                    <TouchableOpacity onPress={() => navigation.navigate('student-details', { id: x?.id })}>
+                                        <Text style={{ fontSize: 14, cursor: 'pointer', backgroundColor: 'black', padding: 9, color: '#fff' }}>view</Text>
+                                    </TouchableOpacity>
+                                </View>
 
-            );
+                            );
                         })
-                    
+
                 }
 
-        </View>
+            </View>
             {/* <View style={styles.bottomContainer}>
                 <View style={{ backgroundColor: 'red' }}>
                     <Text style={{ fontSize: 24 }}> One</Text>
@@ -97,12 +107,12 @@ const About = ({ navigation, route }) => {
                     <Text style={{ fontSize: 24 }}> Two</Text>
                 </View>
             </View> */}
-    <View style={{ marginTop: 20, marginBottom: 20, display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+            <View style={{ marginTop: 20, marginBottom: 20, display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
 
-        <TouchableOpacity onPress={() => navigation.navigate('home-page')}>
-            <Text style={{ fontSize: 16, cursor: 'pointer', borderRadius: 10, backgroundColor: 'darkorange', padding: 10, color: '#fff' }}>Back to Home</Text>
-        </TouchableOpacity>
-    </View>
+                <TouchableOpacity onPress={() => navigation.navigate('home-page')}>
+                    <Text style={{ fontSize: 14, cursor: 'pointer', borderRadius: 10, backgroundColor: 'darkorange', padding: 10, color: '#fff' }}>Back to Home</Text>
+                </TouchableOpacity>
+            </View>
         </ScrollView >
     )
 }

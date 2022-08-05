@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, Image, StyleSheet, TextInput, ScrollView, TouchableOpacity } from "react-native";
+import arrow from '../assets/images/arrow.png';
 
 const styles = StyleSheet.create({
     input: {
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
     },
 });
 
-function Weather(props) {
+function Weather({navigation}) {
 
     const apiKey = "f56f24967aaf51182d1d4df628297c6d"
     const [inputCity, setInputCity] = useState("")
@@ -23,7 +24,7 @@ function Weather(props) {
 
     const getWetherDetails = async (cityName) => {
         if (!cityName) {
-            alert("city is not correct")
+            alert("Plz enter your city")
         }
         else {
             const apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey
@@ -62,9 +63,18 @@ function Weather(props) {
                         }}
                         style={{ width: 400, height: 260 }}
                     />
+                    <TouchableOpacity onPress={() => navigation.navigate('home-page')}
+                        style={{ position: 'absolute', left: 10, top: 10 }}
+                    >
+                        <Image
+                            source={arrow}
+                            style={{ width: 35, height: 35 }}
+
+                        />
+                    </TouchableOpacity>
                 </View>
                 <View style={{ position: 'absolute', left: 40 }}>
-                    <View style={{ paddding: 20, marginTop: 30 }}>
+                    <View style={{ paddding: 20, marginTop: 50 }}>
                         <Text style={{ fontSize: 30, textAlign: 'center', color: '#fff', fontWeight: 'bold' }}>Check Weather</Text>
                     </View>
                     <View style={{ paddding: 30, marginTop: 20, width: 300 }}>
@@ -76,7 +86,7 @@ function Weather(props) {
                             placeholderTextColor='#fff'
 
                         />
-                        <TouchableOpacity onPress={handleSearch} style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center',marginTop:10 }}>
+                        <TouchableOpacity onPress={handleSearch} style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}>
                             <Text style={{ fontSize: 14, cursor: 'pointer', width: 100, backgroundColor: 'black', padding: 9, color: '#fff', textAlign: 'center' }}>Search</Text>
                         </TouchableOpacity>
                     </View>
