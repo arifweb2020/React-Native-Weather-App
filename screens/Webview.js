@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { WebView } from 'react-native-webview';
 import ProgressBar from 'react-native-progress/Bar';
 
@@ -15,7 +14,7 @@ function Webview(props) {
         <View>
             {
                 !loaded ? (
-                    <Progress.Bar progress={0.3} width={null} />
+                    <ProgressBar progress={progress} width={null} />
                 ) : null
             }
 
