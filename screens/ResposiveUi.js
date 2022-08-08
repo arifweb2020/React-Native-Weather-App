@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Text, Dimensions } from 'react-native';
+import { homeStyle } from './../style/homeStyle';
 
 // const height = Dimensions.get('screen').height
 
@@ -38,6 +39,7 @@ function ResposiveUi(props) {
             flexDirection: isRotate ? "row" : "column"
 
         }}>
+            {/* <View style={homeStyle.mainConatiner}><Text>how to use global css</Text></View> */}
             <View
                 style={{
                     height: height / 2,
